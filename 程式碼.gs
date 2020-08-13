@@ -2,14 +2,17 @@
 var moment = Moment.moment;
 Logger = BetterLog.useSpreadsheet('1LQJT0RzVdqS9bqSulrA_PIkPERZw1CH4hVNZwknLd6k');
 var newline = "\n";
-var emoji_ball = '⚾';
-var emoji_shock = '😱';
-var emoji_star = '⭐';
+var emoji_ball	= '⚾';
+var emoji_shock	= '😱';
+var emoji_star	= '⭐';
+var emoji_ok 	= '👍';
+var emoji_shiny	= '✨';
+var emoji_heart	= '💕';
 var obj_channel = new Object();
-var msg_donate = '(shiny)(ok)小額贊助開發者(shiny)(ok)' + newline
-	+ '(star)(star)(star)10 元起(star)(star)(star)' + newline
+var msg_donate = emoji_shiny + emoji_ok + '小額贊助開發者' + emoji_shiny + emoji_ok + newline
+	+ repeat(emoji_star, 3, false, false) + '10 元起' + repeat(emoji_star, 3, false, false) + newline
 	+ 'https://p.ecpay.com.tw/57C3587' + newline
-	+ '(ok)(2 hearts)(ok)(2 hearts)(ok)(2 hearts)(ok)(2 hearts)(ok)';
+	+ emoji_ok + emoji_heart + emoji_ok + emoji_heart + emoji_ok + emoji_heart + emoji_ok + emoji_heart + emoji_ok;
 obj_channel['FOX'] = 'ETW1';
 obj_channel['FOX2'] = 'STW1';
 obj_channel['FOX3'] = 'ETWA';

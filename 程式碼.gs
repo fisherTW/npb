@@ -48,17 +48,21 @@ function doPost(e) {
 		var userMessage = events.message.text;
 		Logger.log('userMessage:' + userMessage);
 		var userId = events.source && events.source.userId;
-		var team = commandParser(userMessage);
-		if(team[0]) {
-			msg = askfox(team[0]);
+		var ary_ret = commandParser(userMessage);
+		var command = ary_ret[0];
+		var is_team = ary_ret[1];
+		if(is_team) {
+			msg = askfox(team);
+			if(msg.length == 0) msg = repeat(emoji_shock, 8, false, true) + team + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
 		} else {
-			if(team[1]) {
-				msg = team[1];
+			if(command) {
+				msg = command;
 			} else {
 				msg = '無效指令';
 			}
 		}
-		reply(replyToken, team[0], msg);
+
+		reply(replyToken, msg);
 	}
 }
 
@@ -99,8 +103,7 @@ function commandParser(msg) {
 	return [ret, is_team];
 }
 
-function reply(replyToken, team, msg) {
-	if(msg.length == 0 && team) msg = repeat(emoji_shock, 8, false, true) + team + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
+function reply(replyToken, msg) {
 	var CHANNEL_ACCESS_TOKEN = '54mJpwyLoWXzvPeZO8QvHpxVZaxWz/Yzce/hVUUFHqVOps+9Mxp5VbuJ1TIBtdMfnjgTg+jgEmNoq2QMLrl9jp6F5079LU5gnJkEZ+qN5+pWFh5qnXOV7FsUnW/DyoyghVuR/oL5S9CFivCDiq9+dAdB04t89/1O/w1cDnyilFU=';
 	var payload = {
 		replyToken: replyToken,
@@ -122,7 +125,6 @@ function reply(replyToken, team, msg) {
 }
 
 function push(userId, team, msg) {
-	if(msg.length == 0) msg = repeat(emoji_shock, 8, false, true) + team + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
 	var CHANNEL_ACCESS_TOKEN = '54mJpwyLoWXzvPeZO8QvHpxVZaxWz/Yzce/hVUUFHqVOps+9Mxp5VbuJ1TIBtdMfnjgTg+jgEmNoq2QMLrl9jp6F5079LU5gnJkEZ+qN5+pWFh5qnXOV7FsUnW/DyoyghVuR/oL5S9CFivCDiq9+dAdB04t89/1O/w1cDnyilFU=';
 	var payload = {
 		to: userId,

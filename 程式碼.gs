@@ -9,6 +9,7 @@ var emoji_ok 	= '👍';
 var emoji_shiny	= '✨';
 var emoji_heart	= '💕';
 var obj_channel = new Object();
+var CHANNEL_ACCESS_TOKEN = getSetting();
 var msg_donate = emoji_shiny + emoji_ok + '小額贊助開發者' + emoji_shiny + emoji_ok + newline
 	+ repeat(emoji_star, 3, false, false) + '10 元起' + repeat(emoji_star, 3, false, false) + newline
 	+ 'https://p.ecpay.com.tw/57C3587' + newline
@@ -142,7 +143,6 @@ function commandParser(msg) {
 }
 
 function reply(replyToken, msg) {
-	var CHANNEL_ACCESS_TOKEN = '54mJpwyLoWXzvPeZO8QvHpxVZaxWz/Yzce/hVUUFHqVOps+9Mxp5VbuJ1TIBtdMfnjgTg+jgEmNoq2QMLrl9jp6F5079LU5gnJkEZ+qN5+pWFh5qnXOV7FsUnW/DyoyghVuR/oL5S9CFivCDiq9+dAdB04t89/1O/w1cDnyilFU=';
 	var payload = {
 		replyToken: replyToken,
 		messages: [{
@@ -163,7 +163,6 @@ function reply(replyToken, msg) {
 }
 
 function push(userId, team, msg) {
-	var CHANNEL_ACCESS_TOKEN = '54mJpwyLoWXzvPeZO8QvHpxVZaxWz/Yzce/hVUUFHqVOps+9Mxp5VbuJ1TIBtdMfnjgTg+jgEmNoq2QMLrl9jp6F5079LU5gnJkEZ+qN5+pWFh5qnXOV7FsUnW/DyoyghVuR/oL5S9CFivCDiq9+dAdB04t89/1O/w1cDnyilFU=';
 	var payload = {
 		to: userId,
 		messages: [{

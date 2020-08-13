@@ -1,6 +1,7 @@
 // moment.js required
 var moment = Moment.moment;
 Logger = BetterLog.useSpreadsheet('1LQJT0RzVdqS9bqSulrA_PIkPERZw1CH4hVNZwknLd6k');
+var sheet_setting = '1UJ6XNl7dnEbX0L2XU9Ybpwp3UeezIbfCpEl_WUDdBhY';
 var newline = "\n";
 var emoji_ball	= '⚾';
 var emoji_shock	= '😱';
@@ -9,7 +10,7 @@ var emoji_ok 	= '👍';
 var emoji_shiny	= '✨';
 var emoji_heart	= '💕';
 var obj_channel = new Object();
-var CHANNEL_ACCESS_TOKEN = getSetting();
+var CHANNEL_ACCESS_TOKEN = getSetting(1, 1);
 var msg_donate = emoji_shiny + emoji_ok + '小額贊助開發者' + emoji_shiny + emoji_ok + newline
 	+ repeat(emoji_star, 3, false, false) + '10 元起' + repeat(emoji_star, 3, false, false) + newline
 	+ 'https://p.ecpay.com.tw/57C3587' + newline
@@ -75,18 +76,14 @@ function doPost(e) {
 	}
 }
 
-function getSetting() {
-  var id = '1UJ6XNl7dnEbX0L2XU9Ybpwp3UeezIbfCpEl_WUDdBhY';
-  var spreadsheet = SpreadsheetApp.openById(id);
-  var sheet = spreadsheet.getSheets()[0]; // 要第幾個sheet？ 0 就是第一個
-  var ret = sheet.getSheetValues(1,1,1,1);
+// B4 x=2, y=4
+function getSetting(x, y) {
+	var spreadsheet = SpreadsheetApp.openById(sheet_setting);
+	var sheet = spreadsheet.getSheets()[0];
+	var ret = sheet.getSheetValues(y,x,1,1);
 
-  //var dataExportFormat = JSON.stringify(data);
-  //return ContentService.createTextOutput(dataExportFormat).setMimeType(ContentService.MimeType.JSON);
-  return ret;
+	return ret;
 }
-
-
 
 // return false if msg is invalid
 function commandParser(msg) {
@@ -133,8 +130,6 @@ function commandParser(msg) {
 			return [false, false];
 	}
 
-
-
 	return [ret, is_team];
 }
 
@@ -158,7 +153,7 @@ function reply(replyToken, msg) {
 	UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', option);
 }
 
-function push(userId, team, msg) {
+function push(userId, msg) {
 	var payload = {
 		to: userId,
 		messages: [{

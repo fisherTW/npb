@@ -49,8 +49,8 @@ function doPost(e) {
 		Logger.log('userMessage:' + userMessage);
 		var userId = events.source && events.source.userId;
 		var team = commandParser(userMessage);
-		if(team) {
-			msg = askfox(team);
+		if(team[0]) {
+			msg = askfox(team[0]);
 		} else {
 			msg = '無效指令';
 		}
@@ -61,6 +61,7 @@ function doPost(e) {
 // return false if msg is invalid
 function commandParser(msg) {
 	var ret = '';
+	var is_team = true;
 	
 	switch(msg) {
 		case '日':
@@ -82,11 +83,12 @@ function commandParser(msg) {
 			ret = '羅德';
 			break;			
 		default:
-			return false;
+			is_team = false;
+			return [false, false];
 	}
 	
 	
-	return ret;
+	return [ret, is_team];
 }
 
 function reply(replyToken, team, msg) {

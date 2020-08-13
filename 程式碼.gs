@@ -74,6 +74,19 @@ function doPost(e) {
 	}
 }
 
+function getSetting() {
+  var id = '1UJ6XNl7dnEbX0L2XU9Ybpwp3UeezIbfCpEl_WUDdBhY';
+  var spreadsheet = SpreadsheetApp.openById(id);
+  var sheet = spreadsheet.getSheets()[0]; // 要第幾個sheet？ 0 就是第一個
+  var ret = sheet.getSheetValues(1,1,1,1);
+
+  //var dataExportFormat = JSON.stringify(data);
+  //return ContentService.createTextOutput(dataExportFormat).setMimeType(ContentService.MimeType.JSON);
+  return ret;
+}
+
+
+
 // return false if msg is invalid
 function commandParser(msg) {
 	var ret = '';
@@ -113,7 +126,11 @@ function commandParser(msg) {
 				+ '※央聯無直播'
 				+ repeat(emoji_star, 8, true, true)
 				+ msg_donate;
-			break;			
+			break;
+		case 'ppp':
+			is_team = false;
+			ret = getSetting();
+			break;		
 		default:
 			is_team = false;
 			return [false, false];

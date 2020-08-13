@@ -52,9 +52,13 @@ function doPost(e) {
 		if(team[0]) {
 			msg = askfox(team[0]);
 		} else {
-			msg = '無效指令';
+			if(team[1]) {
+				msg = team[1];
+			} else {
+				msg = '無效指令';
+			}
 		}
-		reply(replyToken, team, msg);
+		reply(replyToken, team[0], msg);
 	}
 }
 
@@ -81,6 +85,10 @@ function commandParser(msg) {
 			break;
 		case '羅':
 			ret = '羅德';
+			break;
+		case 'h':
+			is_team = false;
+			ret = 'hhh';
 			break;			
 		default:
 			is_team = false;
@@ -92,7 +100,7 @@ function commandParser(msg) {
 }
 
 function reply(replyToken, team, msg) {
-	if(msg.length == 0) msg = repeat(emoji_shock, 8, false, true) + team + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
+	if(msg.length == 0 && team) msg = repeat(emoji_shock, 8, false, true) + team + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
 	var CHANNEL_ACCESS_TOKEN = '54mJpwyLoWXzvPeZO8QvHpxVZaxWz/Yzce/hVUUFHqVOps+9Mxp5VbuJ1TIBtdMfnjgTg+jgEmNoq2QMLrl9jp6F5079LU5gnJkEZ+qN5+pWFh5qnXOV7FsUnW/DyoyghVuR/oL5S9CFivCDiq9+dAdB04t89/1O/w1cDnyilFU=';
 	var payload = {
 		replyToken: replyToken,

@@ -6,6 +6,10 @@ var emoji_ball = '⚾';
 var emoji_shock = '😱';
 var emoji_star = '⭐';
 var obj_channel = new Object();
+var msg_donate = '(shiny)(ok)小額贊助開發者(shiny)(ok)' + newline
+	+ '(star)(star)(star)10 元起(star)(star)(star)' + newline
+	+ 'https://p.ecpay.com.tw/57C3587' + newline
+	+ '(ok)(2 hearts)(ok)(2 hearts)(ok)(2 hearts)(ok)(2 hearts)(ok)';
 obj_channel['FOX'] = 'ETW1';
 obj_channel['FOX2'] = 'STW1';
 obj_channel['FOX3'] = 'ETWA';
@@ -101,15 +105,19 @@ function commandParser(msg) {
 				+ '「樂」: 查樂天本日直播' + newline
 				+ '「軟」: 查軟銀本日直播' + newline
 				+ '「歐」: 查歐力士本日直播' + newline
-				+ '「羅」: 查羅德本日直播'
-				+ repeat(emoji_star, 8, true, false);
+				+ '「羅」: 查羅德本日直播' + newline + newline
+				+ '手機請多利用下方快速按鈕～' + newline
+				+ '※央聯無直播'
+				+ repeat(emoji_star, 8, true, false)
+				+ msg_donate;
 			break;			
 		default:
 			is_team = false;
 			return [false, false];
 	}
-	
-	
+
+
+
 	return [ret, is_team];
 }
 

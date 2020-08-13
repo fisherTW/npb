@@ -127,11 +127,7 @@ function commandParser(msg) {
 				+ '※央聯無直播'
 				+ repeat(emoji_star, 8, true, true)
 				+ msg_donate;
-			break;
-		case 'ppp':
-			is_team = false;
-			ret = getSetting();
-			break;		
+			break;	
 		default:
 			is_team = false;
 			return [false, false];

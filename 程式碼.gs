@@ -4,6 +4,7 @@ Logger = BetterLog.useSpreadsheet('1LQJT0RzVdqS9bqSulrA_PIkPERZw1CH4hVNZwknLd6k'
 var newline = "\n";
 var emoji_ball = '⚾';
 var emoji_shock = '😱';
+var emoji_star = '⭐';
 var obj_channel = new Object();
 obj_channel['FOX'] = 'ETW1';
 obj_channel['FOX2'] = 'STW1';
@@ -92,7 +93,16 @@ function commandParser(msg) {
 			break;
 		case 'h':
 			is_team = false;
-			ret = 'hhh';
+			ret = repeat(emoji_star, 8, false, true) 
+				+ '指令表' + newline 
+				+ '「h」: 本表' + newline
+				+ '「日」: 查火腿本日直播' + newline
+				+ '「西」: 查西武本日直播' + newline
+				+ '「樂」: 查樂天本日直播' + newline
+				+ '「軟」: 查軟銀本日直播' + newline
+				+ '「歐」: 查歐力士本日直播' + newline
+				+ '「羅」: 查羅德本日直播'
+				+ repeat(emoji_star, 8, true, false);
 			break;			
 		default:
 			is_team = false;

@@ -111,7 +111,7 @@ function commandParser(msg) {
 				+ '「羅」: 查羅德本日直播' + newline + newline
 				+ '手機請多利用下方快速按鈕～' + newline
 				+ '※央聯無直播'
-				+ repeat(emoji_star, 8, true, false)
+				+ repeat(emoji_star, 8, true, true)
 				+ msg_donate;
 			break;			
 		default:

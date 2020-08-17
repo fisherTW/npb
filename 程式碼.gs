@@ -24,13 +24,12 @@ obj_channel['FOX3'] = 'ETWA';
 
 function askfox(team) {
 	var today = moment(moment().valueOf()).format('YYYYMMDD');
-	var ary_ret = '';
+	var ary_ret = [];
 
 	for(var i in obj_channel) {
 		var url = 'https://tv.foxsports.com.tw/getEPG.php?lang=zh-tw&channelCode=' + obj_channel[i] + '&date=' + today + '&tz=480';
 		var response = UrlFetchApp.fetch(url);
 		var obj = JSON.parse(response.getContentText());
-		//ret += (ret.length > 0 ? newline : '') + parser(obj, team);
 		ary_ret.push(parser(obj, team));
 	}
 	
@@ -234,13 +233,6 @@ function commandParser(msg) {
 }
 
 function reply(replyToken, msg) {
-//	var payload = {
-//		replyToken: replyToken,
-//		messages: [{
-//			'type': 'text',
-//			'text': msg
-//		}]
-//	};
 	var payload = {
 		replyToken: replyToken,
 		messages: [msg]

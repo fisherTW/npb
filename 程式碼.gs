@@ -124,7 +124,7 @@ function templater(ary_data) {
       "contents": [
         {
           "type": "text",
-          "text": moment(moment().valueOf()).format('MM/DD');,
+          "text": moment(moment().valueOf()).format('MM/DD'),
           "size": "xl",
           "weight": "bold"
         },

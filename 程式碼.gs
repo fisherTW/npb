@@ -158,7 +158,7 @@ function templater() {
     }
   }
 };
-	return json_ret;
+	return JSON.stringify(json_ret);
 }
 
 function doPost(e) {

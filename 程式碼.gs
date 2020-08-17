@@ -50,6 +50,117 @@ function parser(obj, team) {
 	return ret;
 }
 
+function templater() {
+	var json_ret = {
+  "type": "flex",
+  "altText": "Flex Message",
+  "contents": {
+    "type": "bubble",
+    "header": {
+      "type": "box",
+      "layout": "vertical",
+      "flex": 0,
+      "contents": [
+        {
+          "type": "text",
+          "text": "NPB 直播君",
+          "size": "sm",
+          "weight": "bold",
+          "color": "#AAAAAA"
+        }
+      ]
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "md",
+      "action": {
+        "type": "uri",
+        "label": "Action",
+        "uri": "https://linecorp.com"
+      },
+      "contents": [
+        {
+          "type": "text",
+          "text": "8/17",
+          "size": "xl",
+          "weight": "bold"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "baseline",
+              "contents": [
+                {
+                  "type": "icon",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png"
+                },
+                {
+                  "type": "text",
+                  "text": "火腿vs.樂天",
+                  "flex": 0,
+                  "margin": "sm",
+                  "weight": "bold"
+                },
+                {
+                  "type": "text",
+                  "text": "FOX3",
+                  "align": "center"
+                },
+                {
+                  "type": "text",
+                  "text": "17:00",
+                  "size": "sm",
+                  "align": "end",
+                  "color": "#AAAAAA"
+                }
+              ]
+            },
+            {
+              "type": "separator"
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "contents": [
+                {
+                  "type": "icon",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png"
+                },
+                {
+                  "type": "text",
+                  "text": "火腿vs.樂天",
+                  "flex": 0,
+                  "margin": "sm",
+                  "weight": "bold"
+                },
+                {
+                  "type": "text",
+                  "text": "FOX",
+                  "align": "center"
+                },
+                {
+                  "type": "text",
+                  "text": "17:00",
+                  "size": "sm",
+                  "align": "end",
+                  "color": "#AAAAAA"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+};
+	return json_ret;
+}
+
 function doPost(e) {
 	var msg = JSON.parse(e.postData.contents);
 	var events = msg.events[0];
@@ -62,7 +173,8 @@ function doPost(e) {
 		var command = ary_ret[0];
 		var is_team = ary_ret[1];
 		if(is_team) {
-			msg = askfox(command);
+			//msg = askfox(command);
+			msg = templater();
 			if(msg.length == 0) msg = repeat(emoji_shock, 8, false, true) + command + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
 		} else {
 			if(command) {

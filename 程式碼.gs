@@ -1,6 +1,5 @@
 // moment.js required
 var moment = Moment.moment;
-moment = moment().add(1, 'd');
 Logger = BetterLog.useSpreadsheet('1LQJT0RzVdqS9bqSulrA_PIkPERZw1CH4hVNZwknLd6k');
 var sheet_setting = '1UJ6XNl7dnEbX0L2XU9Ybpwp3UeezIbfCpEl_WUDdBhY';
 var url_donate = 'https://p.ecpay.com.tw/57C3587';
@@ -24,7 +23,8 @@ obj_channel['FOX2'] = 'STW1';
 obj_channel['FOX3'] = 'ETWA';
 
 function askfox(team) {
-	var today = moment(moment().valueOf()).format('YYYYMMDD');
+	//var today = moment(moment().valueOf()).format('YYYYMMDD');
+	var today = moment(moment().add(1, 'd').valueOf()).format('YYYYMMDD');
 	var ary_ret = [];
 
 	for(var i in obj_channel) {

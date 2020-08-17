@@ -48,8 +48,6 @@ function parser(obj, team) {
 				&& obj[key][k].live == 'L'
 				&& obj[key][k].programme.indexOf('日本') > 0
 				&& obj[key][k].programme.indexOf(team) > 0) {
-				//ret += emoji_ball + moment(new Date(obj[key][k].date + ' ' + obj[key][k].start_time)).format('YYYY/MM/DD HH:mm');
-				//ret += newline + '[' + Object.keys(obj_channel).find(kk => obj_channel[kk] === obj[key][k].channel_code) + ']' + obj[key][k].programme;
 
 				ret = obj[key][k].programme + str_sep + Object.keys(obj_channel).find(kk => obj_channel[kk] === obj[key][k].channel_code) + str_sep + moment(new Date(obj[key][k].date + ' ' + obj[key][k].start_time)).format('HH:mm');
 			}
@@ -64,8 +62,7 @@ function templater(ary_data) {
 	for(var i=0; i < ary_data.length; i++) {
 		var ary_text = ary_data[i].split(str_sep);
 		ary_text[0] = ary_text[0].split(':');
-		var obj =             
-		{
+		var obj = {
 			"type": "box",
 			"layout": "baseline",
 			"contents": [

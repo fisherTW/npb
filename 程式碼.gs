@@ -162,7 +162,10 @@ function doPost(e) {
 			}
 		} else {
 			if(command) {
-				msg = command;
+				msg = {
+					'type' : 'text',
+					'text' : command
+				};				
 			} else {
 				msg = {
 					'type' : 'text',

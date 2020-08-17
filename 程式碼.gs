@@ -1,5 +1,6 @@
 // moment.js required
-var moment = Moment.moment.add(1, 'd');
+var moment = Moment.moment;
+moment = moment().add(1, 'd');
 Logger = BetterLog.useSpreadsheet('1LQJT0RzVdqS9bqSulrA_PIkPERZw1CH4hVNZwknLd6k');
 var sheet_setting = '1UJ6XNl7dnEbX0L2XU9Ybpwp3UeezIbfCpEl_WUDdBhY';
 var url_donate = 'https://p.ecpay.com.tw/57C3587';

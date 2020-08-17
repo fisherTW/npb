@@ -6,7 +6,7 @@ var notify_client_id = 'W9OXlaOdhSNKz85jcqU6Ib';
 var url_donate = 'https://p.ecpay.com.tw/57C3587';
 var url_notify_callback = 'https://script.google.com/macros/s/AKfycbx3dFPPqrhppQ508EFDQPUo67UrnNZNL9rdCtJWyi5pJPaE0vw/exec';
 var url_pic_live = 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png';
-var url_notify = 'https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=' + url_notify + '&redirect_uri=' + url_notify_callback + '&scope=notify&state=NO_STATE';
+var url_notify = 'https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=' + notify_client_id + '&redirect_uri=' + url_notify_callback + '&scope=notify&state=NO_STATE';
 var str_sep = '[-S-]';
 var newline = "\n";
 var emoji_ball	= '⚾';

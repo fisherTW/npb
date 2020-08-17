@@ -95,7 +95,7 @@ function templater(ary_data) {
 	}
 	var obj_ret = {
   "type": "flex",
-  "altText": "Flex Message",
+  "altText": "NPB 直播君",
   "contents": {
     "type": "bubble",
     "header": {

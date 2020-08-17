@@ -63,6 +63,7 @@ function templater(ary_data) {
 	var ary_contents = [];
 	for(var i=0; i < ary_data.length; i++) {
 		var ary_text = ary_data[i].split(str_sep);
+		ary_text[0] = ary_text[0].split(':');
 		var obj =             
 		{
 			"type": "box",
@@ -74,7 +75,7 @@ function templater(ary_data) {
 				},
 				{
 					"type": "text",
-					"text": ary_text[0],//"火腿vs.樂天",
+					"text": ary_text[0][1],//"火腿vs.樂天",
 					"flex": 0,
 					"margin": "sm",
 					"weight": "bold"

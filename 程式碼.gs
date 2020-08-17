@@ -98,50 +98,50 @@ function templater(ary_data) {
 		ary_contents.push(obj);
 	}
 	var obj_ret = {
-  "type": "flex",
-  "altText": "NPB 直播君",
-  "contents": {
-    "type": "bubble",
-    "header": {
-      "type": "box",
-      "layout": "vertical",
-      "flex": 0,
-      "contents": [
-        {
-          "type": "text",
-          "text": "NPB 直播君",
-          "size": "sm",
-          "weight": "bold",
-          "color": "#AAAAAA"
-        }
-      ]
-    },
-    "body": {
-      "type": "box",
-      "layout": "vertical",
-      "spacing": "md",
-      "action": {
-        "type": "uri",
-        "label": "Action",
-        "uri": url_donate
-      },
-      "contents": [
-        {
-          "type": "text",
-          "text": moment(moment().valueOf()).format('MM/DD'),
-          "size": "xl",
-          "weight": "bold"
-        },
-        {
-          "type": "box",
-          "layout": "vertical",
-          "spacing": "sm",
-          "contents": ary_contents
-        }
-      ]
-    }
-  }
-};
+		"type": "flex",
+		"altText": "NPB 直播君",
+		"contents": {
+			"type": "bubble",
+			"header": {
+				"type": "box",
+				"layout": "vertical",
+				"flex": 0,
+				"contents": [
+					{
+						"type": "text",
+						"text": "NPB 直播君",
+						"size": "sm",
+						"weight": "bold",
+						"color": "#AAAAAA"
+					}
+				]
+			},
+			"body": {
+				"type": "box",
+				"layout": "vertical",
+				"spacing": "md",
+				"action": {
+					"type": "uri",
+					"label": "Action",
+					"uri": url_donate
+				},
+				"contents": [
+					{
+						"type": "text",
+						"text": moment(moment().valueOf()).format('MM/DD'),
+						"size": "xl",
+						"weight": "bold"
+					},
+					{
+						"type": "box",
+						"layout": "vertical",
+						"spacing": "sm",
+						"contents": ary_contents
+					}
+				]
+			}
+		}
+	};
 	return obj_ret;
 }
 

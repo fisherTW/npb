@@ -30,7 +30,10 @@ function askfox(team) {
 		var url = 'https://tv.foxsports.com.tw/getEPG.php?lang=zh-tw&channelCode=' + obj_channel[i] + '&date=' + today + '&tz=480';
 		var response = UrlFetchApp.fetch(url);
 		var obj = JSON.parse(response.getContentText());
-		ary_ret.push(parser(obj, team));
+		var tmp = parser(obj, team);
+		if(tmp.length > 0) {
+			ary_ret.push(tmp);
+		}
 	}
 	
 	return ary_ret;

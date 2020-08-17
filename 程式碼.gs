@@ -152,7 +152,28 @@ function templater(ary_data, team) {
 						"contents": ary_contents
 					}
 				]
-			}
+			},
+			"footer": {
+				"type": "box",
+				"layout": "vertical",
+				"contents": [
+					{
+						"type": "spacer",
+						"size": "xxl"
+					},
+					{
+						"type": "text",
+						"text": "小額贊助開發者貓糧",
+						"size": "xxs",
+						"align": "center",
+						"color": "#AAAAAA",
+						"action": {
+							"type": "uri",
+							"uri": url_donate
+						}
+					}	
+				]
+			}		
 		}
 	};
 	return obj_ret;

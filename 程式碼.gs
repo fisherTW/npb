@@ -157,8 +157,8 @@ function doPost(e) {
 			if(msg.length == 0) {
 				msg = repeat(emoji_shock, 8, false, true) + command + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
 				msg = {
-					'type' = 'text',
-					'text' = msg
+					'type' : 'text',
+					'text' : msg
 				};
 			}
 		} else {
@@ -166,8 +166,8 @@ function doPost(e) {
 				msg = command;
 			} else {
 				msg = {
-					'type' = 'text',
-					'text' = '無效指令'
+					'type' : 'text',
+					'text' : '無效指令'
 				};
 			}
 		}

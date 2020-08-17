@@ -153,14 +153,22 @@ function doPost(e) {
 		var command = ary_ret[0];
 		var is_team = ary_ret[1];
 		if(is_team) {
-			//msg = askfox(command);
 			msg = templater(askfox(command));
-			if(msg.length == 0) msg = repeat(emoji_shock, 8, false, true) + command + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
+			if(msg.length == 0) {
+				msg = repeat(emoji_shock, 8, false, true) + command + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
+				msg = {
+					'type' = 'text',
+					'text' = msg
+				};
+			}
 		} else {
 			if(command) {
 				msg = command;
 			} else {
-				msg = '無效指令';
+				msg = {
+					'type' = 'text',
+					'text' = '無效指令'
+				};
 			}
 		}
 

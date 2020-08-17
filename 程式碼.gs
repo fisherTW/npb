@@ -57,7 +57,8 @@ function parser(obj, team) {
 	return ret;
 }
 
-function templater(ary_data) {
+// ary_data.length = 0 =>本日無
+function templater(ary_data, team) {
 	var ary_contents = [];
 	for(var i=0; i < ary_data.length; i++) {
 		var ary_text = ary_data[i].split(str_sep);
@@ -93,6 +94,21 @@ function templater(ary_data) {
 		};
 		if(i != 0) ary_contents.push({"type": "separator"});
 		ary_contents.push(obj);
+	}
+	if(ary_data.length == 0) {
+		ary_contents[0] = {
+			"type": "box",
+			"layout": "baseline",
+			"contents": [
+				{
+					"type": "text",
+					"text": team + '本日無直播',
+					"flex": 0,
+					"margin": "sm",
+					"weight": "bold"
+				}
+			]
+		};		
 	}
 	var obj_ret = {
 		"type": "flex",
@@ -154,16 +170,7 @@ function doPost(e) {
 		var command = ary_ret[0];
 		var is_team = ary_ret[1];
 		if(is_team) {
-			var ary_msg = askfox(command);
-			if(ary_msg.length == 0) {
-				msg = repeat(emoji_shock, 8, false, true) + command + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
-				msg = {
-					'type' : 'text',
-					'text' : msg
-				};
-			} else{
-				msg = templater(ary_msg);
-			}
+			msg = templater(askfox(command), command);
 		} else {
 			if(command) {
 				msg = {

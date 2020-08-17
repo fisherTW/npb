@@ -2,6 +2,9 @@
 var moment = Moment.moment;
 Logger = BetterLog.useSpreadsheet('1LQJT0RzVdqS9bqSulrA_PIkPERZw1CH4hVNZwknLd6k');
 var sheet_setting = '1UJ6XNl7dnEbX0L2XU9Ybpwp3UeezIbfCpEl_WUDdBhY';
+var url_donate = 'https://p.ecpay.com.tw/57C3587';
+var url_pic_live = 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png';
+var str_sep = '[-S-]';
 var newline = "\n";
 var emoji_ball	= '⚾';
 var emoji_shock	= '😱';
@@ -13,7 +16,7 @@ var obj_channel = new Object();
 var CHANNEL_ACCESS_TOKEN = getSetting(1, 1);
 var msg_donate = emoji_shiny + emoji_ok + '小額贊助開發者' + emoji_shiny + emoji_ok + newline
 	+ repeat(emoji_star, 3, false, false) + '10 元起' + repeat(emoji_star, 3, false, false) + newline
-	+ 'https://p.ecpay.com.tw/57C3587' + newline
+	+ url_donate + newline
 	+ emoji_ok + emoji_heart + emoji_ok + emoji_heart + emoji_ok + emoji_heart + emoji_ok + emoji_heart + emoji_ok;
 obj_channel['FOX'] = 'ETW1';
 obj_channel['FOX2'] = 'STW1';
@@ -21,16 +24,17 @@ obj_channel['FOX3'] = 'ETWA';
 
 function askfox(team) {
 	var today = moment(moment().valueOf()).format('YYYYMMDD');
-	var ret = '';
+	var ary_ret = '';
 
 	for(var i in obj_channel) {
 		var url = 'https://tv.foxsports.com.tw/getEPG.php?lang=zh-tw&channelCode=' + obj_channel[i] + '&date=' + today + '&tz=480';
 		var response = UrlFetchApp.fetch(url);
 		var obj = JSON.parse(response.getContentText());
-		ret += (ret.length > 0 ? newline : '') + parser(obj, team);
+		//ret += (ret.length > 0 ? newline : '') + parser(obj, team);
+		ary_ret.push(parser(obj, team));
 	}
 	
-	return ret;
+	return ary_ret;
 }
 
 function parser(obj, team) {
@@ -41,8 +45,10 @@ function parser(obj, team) {
 				&& obj[key][k].live == 'L'
 				&& obj[key][k].programme.indexOf('日本') > 0
 				&& obj[key][k].programme.indexOf(team) > 0) {
-				ret += emoji_ball + moment(new Date(obj[key][k].date + ' ' + obj[key][k].start_time)).format('YYYY/MM/DD HH:mm');
-				ret += newline + '[' + Object.keys(obj_channel).find(kk => obj_channel[kk] === obj[key][k].channel_code) + ']' + obj[key][k].programme;
+				//ret += emoji_ball + moment(new Date(obj[key][k].date + ' ' + obj[key][k].start_time)).format('YYYY/MM/DD HH:mm');
+				//ret += newline + '[' + Object.keys(obj_channel).find(kk => obj_channel[kk] === obj[key][k].channel_code) + ']' + obj[key][k].programme;
+
+				ret = obj[key][k].programme + str_sep + Object.keys(obj_channel).find(kk => obj_channel[kk] === obj[key][k].channel_code) + str_sep + moment(new Date(obj[key][k].date + ' ' + obj[key][k].start_time)).format('HH:mm');
 			}
 		});
 	});
@@ -50,8 +56,44 @@ function parser(obj, team) {
 	return ret;
 }
 
-function templater() {
-	var json_ret = {
+function templater(ary_data) {
+	var ary_contents = [];
+	for(var i=0; i < ary_data.length; i++) {
+		var ary_text = ary_data[i].split(str_sep);
+		var obj =             
+		{
+			"type": "box",
+			"layout": "baseline",
+			"contents": [
+				{
+					"type": "icon",
+					"url": url_pic_live
+				},
+				{
+					"type": "text",
+					"text": ary_text[0],//"火腿vs.樂天",
+					"flex": 0,
+					"margin": "sm",
+					"weight": "bold"
+				},
+				{
+					"type": "text",
+					"text": ary_text[1],//"FOX3",
+					"align": "center"
+				},
+				{
+					"type": "text",
+					"text": ary_text[2],//"17:00",
+					"size": "sm",
+					"align": "end",
+					"color": "#AAAAAA"
+				}
+			]
+		};
+		if(i != 0) ary_contents.push({"type": "separator"});
+		ary_contents.push(obj);
+	}
+	var obj_ret = {
   "type": "flex",
   "altText": "Flex Message",
   "contents": {
@@ -77,12 +119,12 @@ function templater() {
       "action": {
         "type": "uri",
         "label": "Action",
-        "uri": "https://linecorp.com"
+        "uri": url_donate
       },
       "contents": [
         {
           "type": "text",
-          "text": "8/17",
+          "text": moment(moment().valueOf()).format('MM/DD');,
           "size": "xl",
           "weight": "bold"
         },
@@ -90,75 +132,13 @@ function templater() {
           "type": "box",
           "layout": "vertical",
           "spacing": "sm",
-          "contents": [
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "icon",
-                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png"
-                },
-                {
-                  "type": "text",
-                  "text": "火腿vs.樂天",
-                  "flex": 0,
-                  "margin": "sm",
-                  "weight": "bold"
-                },
-                {
-                  "type": "text",
-                  "text": "FOX3",
-                  "align": "center"
-                },
-                {
-                  "type": "text",
-                  "text": "17:00",
-                  "size": "sm",
-                  "align": "end",
-                  "color": "#AAAAAA"
-                }
-              ]
-            },
-            {
-              "type": "separator"
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "icon",
-                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png"
-                },
-                {
-                  "type": "text",
-                  "text": "火腿vs.樂天",
-                  "flex": 0,
-                  "margin": "sm",
-                  "weight": "bold"
-                },
-                {
-                  "type": "text",
-                  "text": "FOX",
-                  "align": "center"
-                },
-                {
-                  "type": "text",
-                  "text": "17:00",
-                  "size": "sm",
-                  "align": "end",
-                  "color": "#AAAAAA"
-                }
-              ]
-            }
-          ]
+          "contents": ary_contents
         }
       ]
     }
   }
 };
-	return json_ret;
+	return obj_ret;
 }
 
 function doPost(e) {
@@ -174,7 +154,7 @@ function doPost(e) {
 		var is_team = ary_ret[1];
 		if(is_team) {
 			//msg = askfox(command);
-			msg = templater();
+			msg = templater(askfox(command));
 			if(msg.length == 0) msg = repeat(emoji_shock, 8, false, true) + command + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
 		} else {
 			if(command) {

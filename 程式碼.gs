@@ -23,8 +23,8 @@ obj_channel['FOX2'] = 'STW1';
 obj_channel['FOX3'] = 'ETWA';
 
 function askfox(team) {
-	//var today = moment(moment().valueOf()).format('YYYYMMDD');
-	var today = moment(moment().add(1, 'd').valueOf()).format('YYYYMMDD');
+	var today = moment(moment().valueOf()).format('YYYYMMDD');
+	//var today = moment(moment().add(1, 'd').valueOf()).format('YYYYMMDD');
 	var ary_ret = [];
 
 	for(var i in obj_channel) {

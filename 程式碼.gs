@@ -158,7 +158,7 @@ function templater() {
     }
   }
 };
-	return JSON.stringify(json_ret);
+	return json_ret;
 }
 
 function doPost(e) {
@@ -246,13 +246,17 @@ function commandParser(msg) {
 }
 
 function reply(replyToken, msg) {
+//	var payload = {
+//		replyToken: replyToken,
+//		messages: [{
+//			'type': 'text',
+//			'text': msg
+//		}]
+//	};
 	var payload = {
 		replyToken: replyToken,
-		messages: [{
-			'type': 'text',
-			'text': msg
-		}]
-	};
+		messages: [msg]
+	};	
 	var option = {
 		'headers': {
 			'Content-Type': 'application/json; charset=UTF-8',

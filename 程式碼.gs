@@ -108,7 +108,7 @@ function templater(ary_data, team) {
 					"weight": "bold"
 				}
 			]
-		};		
+		};
 	}
 	var obj_ret = {
 		"type": "flex",
@@ -171,9 +171,9 @@ function templater(ary_data, team) {
 							"type": "uri",
 							"uri": url_donate
 						}
-					}	
+					}
 				]
-			}		
+			}
 		}
 	};
 	return obj_ret;

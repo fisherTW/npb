@@ -152,13 +152,15 @@ function doPost(e) {
 		var command = ary_ret[0];
 		var is_team = ary_ret[1];
 		if(is_team) {
-			msg = templater(askfox(command));
-			if(msg.length == 0) {
+			var ary_msg = askfox(command);
+			if(ary_msg.length == 0) {
 				msg = repeat(emoji_shock, 8, false, true) + command + ' 本日無直播' + repeat(emoji_shock, 8, true, false);
 				msg = {
 					'type' : 'text',
 					'text' : msg
 				};
+			} else{
+				msg = templater(ary_msg);
 			}
 		} else {
 			if(command) {

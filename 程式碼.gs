@@ -67,7 +67,7 @@ function templater(ary_data, team) {
 		var ary_text = ary_data[i].split(str_sep);
 		url_notify = 'https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=' + notify_client_id 
 		+ '&scope=notify&state=NO_STATE'
-		+ '&redirect_uri=' + url_notify_callback + '?time=' + ary_text[2];
+		+ '&redirect_uri=' + encodeURIComponent(url_notify_callback + '?time=' + ary_text[2]);
 
 		ary_text[0] = ary_text[0].split(':');
 		var obj = {

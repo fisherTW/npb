@@ -180,7 +180,7 @@ function templater(ary_data, team) {
 						"action": {
 							"type": "uri",
 							"label": "通知",
-							"uri": url_notify
+							"uri": url_notify + '&time=1500'
 						},
 						"color": "#000000",
 						"style": "primary"

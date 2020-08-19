@@ -18,7 +18,12 @@ var Robot = ((rb) => {
 					};				
 				} else {
 					if(msg.indexOf('h.remind') > 0) {
-						msg = bubble_remind(msg.replace('h.remind',''));
+						try() {
+							msg = bubble_remind(msg.replace('h.remind',''));
+						} catch(ex) {
+							Logger.log(ex);
+						}
+						
 					}					
 				}
 			} else {

@@ -201,19 +201,23 @@ function doPost(e) {
 	var events = msg.events[0];
 	if (events) {
 		var replyToken =	events.replyToken;
-		
-		var action = (e.parameter.act) ? e.parameter.act : '';
-		switch(act) {
-			case 'robot': 
-				msg = Robot.process(events);		
-				break;
-			case 'subscribe': 
-				msg = Subscribe.process(events);		
-				break;
-			default:
-				msg = '';
+
+		try {		
+				var action = (e.parameter.act) ? e.parameter.act : '';
+				switch(act) {
+					case 'robot': 
+						msg = Robot.process(events);		
+						break;
+					case 'subscribe': 
+						msg = Subscribe.process(events);		
+						break;
+					default:
+						msg = '';
+				}
+				reply(replyToken, msg);
+		} catch (ex) {
+			Logger.log(ex);
 		}
-		reply(replyToken, msg);
 	}
 }
 

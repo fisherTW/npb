@@ -6,8 +6,6 @@ var Subscribe = ((ss) => {
 				'text' : e.parameter.time
 			};				
 
-		}
-
 		return msg;
 	};
 	return ss;

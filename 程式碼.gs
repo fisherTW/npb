@@ -256,8 +256,8 @@ function bubble_remind(time) {
 							"data": "h.remind" + time,
 							"mode": "time",
 							"initial": time,
-							"max": "10:00",
-							"min": "20:00"
+							"max": "20:00",
+							"min": "10:00"
 						},
 						"color": "#000000",
 						"style": "primary"

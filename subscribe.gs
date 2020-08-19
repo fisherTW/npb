@@ -18,7 +18,7 @@ var Subscribe = ((ss) => {
 			} else {
 				msg = {
 					'type' : 'text',
-					'text' : '無效指令'
+					'text' : '無效指令xx'
 				};
 			}
 		}

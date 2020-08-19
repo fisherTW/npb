@@ -200,7 +200,8 @@ function doPost(e) {
 	var msg = JSON.parse(e.postData.contents);
 	var events = msg.events[0];
 	if (events) {
-		msg = Robot.process(events);
+		//msg = Robot.process(events);
+		msg = Subscribe.process(events);
 		var replyToken =	events.replyToken;
 		reply(replyToken, msg);
 	}

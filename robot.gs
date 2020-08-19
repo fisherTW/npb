@@ -1,5 +1,6 @@
 var Robot = ((rb) => {
 	rb.process = (events) => {
+		Logger.log(JSON.stringify(events));
 		var msg = '';
 		var userMessage = events.message.text != 'undefined' ?  events.message.text : events.message.data;
 		Logger.log('userMessage:' + userMessage);

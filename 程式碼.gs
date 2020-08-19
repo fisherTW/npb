@@ -205,7 +205,7 @@ function bubble_remind(time) {
 	var obj = 
 	{
 		"type": "flex",
-		"altText": "Flex Message",
+		"altText": "NPB 直播君",
 		"contents": {
 			"type": "bubble",
 			"direction": "ltr",
@@ -309,7 +309,7 @@ function commandParser(msg) {
 	var is_team = true;
 	var msg_ori = msg;
 
-	if(msg.indexOf('h.remind') > 0) {
+	if(msg.indexOf('h.remind') >= 0) {
 		msg = 'h.remind';
 	}
 	

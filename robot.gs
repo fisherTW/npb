@@ -2,7 +2,7 @@ var Robot = ((rb) => {
 	rb.process = (events) => {
 		Logger.log(JSON.stringify(events));
 		var msg = '';
-		var userMessage = events.message != 'undefined' ?  events.message.text : events.postback.data;
+		var userMessage = events.message === 'undefined' ? events.postback.data : events.message.text;
 		Logger.log('userMessage:' + userMessage);
 		var userId = events.source && events.source.userId;
 		var ary_ret = commandParser(userMessage);

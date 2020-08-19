@@ -20,7 +20,7 @@ var Robot = ((rb) => {
 				} else {
 					if(command.indexOf('h.remind') >= 0) {
 						try {
-							Logger.log(bubble_remind(command.replace('h.remind','')));
+							Logger.log(JSON.stringify(bubble_remind(command.replace('h.remind',''))));
 							msg = bubble_remind(command.replace('h.remind',''));
 						} catch(ex) {
 							Logger.log(ex);

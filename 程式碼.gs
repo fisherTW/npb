@@ -189,6 +189,7 @@ function templater(ary_data, team) {
 						"action": {
 							"type": "postback",
 							"label": "通知",
+							'text': '',
 							"data": "h.remind" + ary_text[2]
 						},
 						"color": "#000000",

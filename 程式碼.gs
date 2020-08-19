@@ -187,9 +187,10 @@ function templater(ary_data, team) {
 					{
 						"type": "button",
 						"action": {
-							"type": "uri",
-							"label": "通知",
-							"uri": url_gas_npb_sub + '&time=' + ary_text[2]
+            "type": "postback",
+            "label": "通知",
+            "text": "aa",
+            "data": "aaa"
 						},
 						"color": "#000000",
 						"style": "primary"

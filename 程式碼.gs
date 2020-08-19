@@ -1,11 +1,20 @@
 // moment.js required
 var moment = Moment.moment;
 Logger = BetterLog.useSpreadsheet('1LQJT0RzVdqS9bqSulrA_PIkPERZw1CH4hVNZwknLd6k');
-var sheet_setting = '1UJ6XNl7dnEbX0L2XU9Ybpwp3UeezIbfCpEl_WUDdBhY';
-var notify_client_id = 'W9OXlaOdhSNKz85jcqU6Ib';
-var url_donate = 'https://p.ecpay.com.tw/57C3587';
+var sheet_setting		= '1UJ6XNl7dnEbX0L2XU9Ybpwp3UeezIbfCpEl_WUDdBhY';
+var notify_client_id	= 'W9OXlaOdhSNKz85jcqU6Ib';
+var url_donate			= 'https://p.ecpay.com.tw/57C3587';
+// dont use directly
+var url_gas_npb			= 'https://script.google.com/macros/s/AKfycbwjoQW3htDOFlyQNji9f3YpY8h5rOIQOk6kOHwFvnmJM3-7GLA/exec';
+
+var url_gas_npb_robot	= url_gas_npb + '?act=robot';
+var url_gas_npb_sub		= url_gas_npb + '?act=subscribe';
+
 var url_notify_callback = 'https://script.google.com/macros/s/AKfycbx3dFPPqrhppQ508EFDQPUo67UrnNZNL9rdCtJWyi5pJPaE0vw/exec';
-var url_pic_live = 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png';
+
+var url_notify = 'https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=' + notify_client_id + '&redirect_uri=' + url_notify_callback + '&scope=notify&state=NO_STATE';
+
+var url_pic_live		= 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png';
 var str_sep = '[-S-]';
 var newline = "\n";
 var emoji_ball	= '⚾';
@@ -62,13 +71,9 @@ function parser(obj, team) {
 // ary_data.length = 0 =>本日無
 function templater(ary_data, team) {
 	var ary_contents = [];
-	var url_notify = 'https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=' + notify_client_id + '&redirect_uri=' + url_notify_callback + '&scope=notify&state=NO_STATE';
+	
 	for(var i=0; i < ary_data.length; i++) {
 		var ary_text = ary_data[i].split(str_sep);
-		url_notify = 'https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=' + notify_client_id 
-		+ '&scope=notify&state=NO_STATE'
-		+ '&redirect_uri=' + encodeURIComponent(url_notify_callback + '?time=' + ary_text[2]);
-
 		ary_text[0] = ary_text[0].split(':');
 		var obj = {
 			"type": "box",
@@ -184,7 +189,7 @@ function templater(ary_data, team) {
 						"action": {
 							"type": "uri",
 							"label": "通知",
-							"uri": url_notify
+							"uri": url_gas_npb_sub + '&time=' + ary_text[2]
 						},
 						"color": "#000000",
 						"style": "primary"
@@ -203,18 +208,18 @@ function doPost(e) {
 		var replyToken =	events.replyToken;
 
 		try {		
-				var act = (e.parameter.act != 'undefined') ? e.parameter.act : '';
-				switch(act) {
-					case 'robot': 
-						msg = Robot.process(events);		
-						break;
-					case 'subscribe': 
-						msg = Subscribe.process(events);		
-						break;
-					default:
-						msg = '';
-				}
-				reply(replyToken, msg);
+			var act = (e.parameter.act != 'undefined') ? e.parameter.act : '';
+			switch(act) {
+				case 'robot': 
+					msg = Robot.process(events);		
+					break;
+				case 'subscribe': 
+					msg = Subscribe.process(e);		
+					break;
+				default:
+					msg = '';
+			}
+			reply(replyToken, msg);
 		} catch (ex) {
 			Logger.log(ex);
 		}

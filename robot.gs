@@ -1,5 +1,5 @@
 var Robot = ((rb) => {
-	ct.process = (events) => {
+	rb.process = (events) => {
 		var msg = '';
 		var userMessage = events.message.text;
 		Logger.log('userMessage:' + userMessage);

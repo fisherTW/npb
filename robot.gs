@@ -11,10 +11,16 @@ var Robot = ((rb) => {
 			msg = templater(askfox(command), command);
 		} else {
 			if(command) {
-				msg = {
-					'type' : 'text',
-					'text' : command
-				};				
+				if(command == 'h') {
+					msg = {
+						'type' : 'text',
+						'text' : command
+					};				
+				} else {
+					if(msg.indexOf('h.remind') > 0) {
+						msg = bubble_remind(msg.replace('h.remind',''));
+					}					
+				}
 			} else {
 				msg = {
 					'type' : 'text',

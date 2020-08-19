@@ -202,6 +202,74 @@ function templater(ary_data, team) {
 	return obj_ret;
 }
 
+function bubble_remind(time) {
+	var obj = 
+	{
+		"type": "flex",
+		"altText": "Flex Message",
+		"contents": {
+			"type": "bubble",
+			"direction": "ltr",
+			"header": {
+				"type": "box",
+				"layout": "vertical",
+				"contents": [
+					{
+						"type": "text",
+						"text": "NPB 直播君",
+						"size": "sm",
+						"align": "start",
+						"weight": "bold",
+						"color": "#AAAAAA"
+					}
+				]
+			},
+			"body": {
+				"type": "box",
+				"layout": "vertical",
+				"contents": [
+					{
+						"type": "text",
+						"text": "8/17",
+						"size": "xl",
+						"align": "start",
+						"gravity": "center",
+						"weight": "bold"
+					},
+					{
+						"type": "text",
+						"text": "22：00",
+						"size": "4xl",
+						"align": "center",
+						"weight": "bold"
+					}
+				]
+			},
+			"footer": {
+				"type": "box",
+				"layout": "horizontal",
+				"contents": [
+					{
+						"type": "button",
+						"action": {
+							"type": "datetimepicker",
+							"label": "設定提醒",
+							"data": "h.remind" + time,
+							"mode": "time",
+							"initial": moment(moment(time).valueOf()).format('HH:mm');,
+							"max": "10:00",
+							"min": "20:00"
+						},
+						"color": "#000000",
+						"style": "primary"
+					}
+				]
+			}
+		}
+	}
+	return obj;
+}
+
 function doPost(e) {
 	var msg = JSON.parse(e.postData.contents);
 	var events = msg.events[0];
@@ -240,6 +308,11 @@ function getSetting(x, y) {
 function commandParser(msg) {
 	var ret = '';
 	var is_team = true;
+	var msg_ori = msg;
+
+	if(msg.indexOf('h.remind') > 0) {
+		msg = 'h.remind';
+	}
 	
 	switch(msg) {
 		case '日':
@@ -275,7 +348,11 @@ function commandParser(msg) {
 				+ '※央聯無直播'
 				+ repeat(emoji_star, 8, true, true)
 				+ msg_donate;
-			break;	
+			break;
+		case 'h.remind':
+			is_team = false;
+			ret = msg_ori;
+			break;
 		default:
 			is_team = false;
 			return [false, false];

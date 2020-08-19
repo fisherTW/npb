@@ -202,7 +202,7 @@ function doPost(e) {
 	if (events) {
 		var replyToken =	events.replyToken;
 		
-		var action = (events.parameter.act) ? events.parameter.act : '';
+		var action = (e.parameter.act) ? e.parameter.act : '';
 		switch(act) {
 			case 'robot': 
 				msg = Robot.process(events);		

@@ -255,7 +255,7 @@ function bubble_remind(time) {
 							"label": "設定提醒",
 							"data": "h.remind" + time,
 							"mode": "time",
-							"initial": moment(moment(time).valueOf()).format('HH:mm'),
+							"initial": moment(moment( moment(moment().valueOf()).format('YYYYMMDD') + time).valueOf()).format('HH:mm'),
 							"max": "10:00",
 							"min": "20:00"
 						},

@@ -18,10 +18,10 @@ var Robot = ((rb) => {
 						'text' : command
 					};				
 				} else {
-					if(msg.indexOf('h.remind') >= 0) {
+					if(command.indexOf('h.remind') >= 0) {
 						try {
-							Logger.log(bubble_remind(msg.replace('h.remind','')));
-							msg = bubble_remind(msg.replace('h.remind',''));
+							Logger.log(bubble_remind(command.replace('h.remind','')));
+							msg = bubble_remind(command.replace('h.remind',''));
 						} catch(ex) {
 							Logger.log(ex);
 						}

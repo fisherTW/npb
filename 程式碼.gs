@@ -200,9 +200,19 @@ function doPost(e) {
 	var msg = JSON.parse(e.postData.contents);
 	var events = msg.events[0];
 	if (events) {
-		//msg = Robot.process(events);
-		msg = Subscribe.process(events);
 		var replyToken =	events.replyToken;
+		
+		var action = (events.parameter.act) ? events.parameter.act : '';
+		switch(act) {
+			case 'robot': 
+				msg = Robot.process(events);		
+				break;
+			case 'subscribe': 
+				msg = Subscribe.process(events);		
+				break;
+			default:
+				msg = '';
+		}
 		reply(replyToken, msg);
 	}
 }

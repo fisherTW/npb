@@ -1,12 +1,8 @@
 var Subscribe = ((ss) => {
-	ss.process = (e) => {
-
-			msg = {
-				'type' : 'text',
-				'text' : e.parameter.time
-			};				
-
-		return msg;
+	ss.process = (events) => {
+		return HtmlService.createHtmlOutput(
+			"<script>window.top.location.href='"+ url_notify + '&state=' + events.source.userId() +"';</script>"
+		);
 	};
 	return ss;
 })(Subscribe || {});

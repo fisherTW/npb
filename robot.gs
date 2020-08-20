@@ -27,7 +27,10 @@ var Robot = ((rb) => {
 						}
 						
 					} else if(command.indexOf('h.settime') >= 0) {
+						var userId = events.source.userId;
+						command = command.replace('h.settime','');
 						writeDb(command, 'settime');
+						updateDb(userId, command);
 					}				
 				}
 			} else {

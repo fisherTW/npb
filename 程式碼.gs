@@ -229,7 +229,7 @@ function bubble_remind(time) {
 				"contents": [
 					{
 						"type": "text",
-						"text": "8/17",
+						"text": "今天",
 						"size": "xl",
 						"align": "start",
 						"gravity": "center",
@@ -237,7 +237,7 @@ function bubble_remind(time) {
 					},
 					{
 						"type": "text",
-						"text": "22：00",
+						"text": time,
 						"size": "4xl",
 						"align": "center",
 						"weight": "bold"

@@ -253,7 +253,7 @@ function bubble_remind(time) {
 						"action": {
 							"type": "datetimepicker",
 							"label": "設定提醒",
-							"data": "h.remind" + time,
+							"data": "h.settime" + time,
 							"mode": "time",
 							"initial": time,
 							"max": "20:00",
@@ -312,6 +312,9 @@ function commandParser(msg) {
 	if(msg.indexOf('h.remind') >= 0) {
 		msg = 'h.remind';
 	}
+	if(msg.indexOf('h.settime') >= 0) {
+		msg = 'h.settime';
+	}	
 	
 	switch(msg) {
 		case '日':
@@ -349,6 +352,7 @@ function commandParser(msg) {
 				+ msg_donate;
 			break;
 		case 'h.remind':
+		case 'h.settime':
 			is_team = false;
 			ret = msg_ori;
 			break;
@@ -403,4 +407,12 @@ function repeat(str, count, is_newline_before, is_newline_after) {
 		ret += str;
 	}
 	return (is_newline_before ? newline : '') + ret + (is_newline_after ? newline : '');
+}
+
+function writeDb(notifyTime, accToken) {
+	var spreadsheet = SpreadsheetApp.openById(sheet_setting);
+	var sheet = spreadsheet.getSheets()[1];
+	var row_to_write = getFirstEmptyRowWholeRow();
+	sheet.getRange("a"+row_to_write).setValue(notifyTime);
+	sheet.getRange("b"+row_to_write).setValue(accToken);
 }

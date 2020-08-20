@@ -26,7 +26,9 @@ var Robot = ((rb) => {
 							Logger.log(ex);
 						}
 						
-					}					
+					} else if(command.indexOf('h.settime') >= 0) {
+						writeDb(command, 'settime');
+					}				
 				}
 			} else {
 				msg = {

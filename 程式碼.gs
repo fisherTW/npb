@@ -409,10 +409,24 @@ function repeat(str, count, is_newline_before, is_newline_after) {
 	return (is_newline_before ? newline : '') + ret + (is_newline_after ? newline : '');
 }
 
+// shared func
+
 function writeDb(notifyTime, accToken) {
 	var spreadsheet = SpreadsheetApp.openById(sheet_setting);
 	var sheet = spreadsheet.getSheets()[1];
 	var row_to_write = getFirstEmptyRowWholeRow();
 	sheet.getRange("a"+row_to_write).setValue(notifyTime);
 	sheet.getRange("b"+row_to_write).setValue(accToken);
+}
+
+function getFirstEmptyRowWholeRow() {
+	var spreadsheet = SpreadsheetApp.openById(sheet_setting);
+	var sheet = spreadsheet.getSheets()[1];
+	var range = sheet.getDataRange();
+	var values = range.getValues();
+	var row = 0;
+	for (var row=0; row<values.length; row++) {
+	  if (!values[row].join("")) break;
+	}
+	return (row+1);
 }

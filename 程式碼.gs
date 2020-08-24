@@ -260,7 +260,7 @@ function bubble_status_subs(userId) {
 		obj.contents.body.contents[0].text = '已連動';
 		obj.contents.footer = null;
 	}
-	Logger.log('url_notify='+url_notify + '&state=' + userId);
+	Logger.log('bubble_status_subs:::url_notify='+url_notify + '&state=' + userId);
 	return obj;
 }
 
@@ -352,7 +352,7 @@ function doPost(e) {
 			}
 			reply(replyToken, msg);
 		} catch (ex) {
-			Logger.log(ex);
+			Logger.log('doPost catch:::' + ex);
 		}
 	}
 }

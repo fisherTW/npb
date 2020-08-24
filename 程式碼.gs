@@ -241,7 +241,7 @@ function bubble_status_subs(userId) {
 			}
 		}
 	}
-	Logger.log('url_notify='+url_notify + '&status' + userId);
+	Logger.log('url_notify='+url_notify + '&status=' + userId);
 	return obj;
 }
 

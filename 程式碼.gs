@@ -12,7 +12,7 @@ var url_gas_npb_sub		= url_gas_npb + '?act=subscribe';
 
 var url_notify_callback = 'https://script.google.com/macros/s/AKfycbx3dFPPqrhppQ508EFDQPUo67UrnNZNL9rdCtJWyi5pJPaE0vw/exec';
 
-var url_notify = 'https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=' + notify_client_id + '&redirect_uri=' + url_notify_callback;
+var url_notify = 'https://notify-bot.line.me/oauth/authorize?response_type=code&scope=notify&client_id=' + notify_client_id + '&redirect_uri=' + url_notify_callback;
 
 var url_pic_live		= 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png';
 var str_sep = '[-S-]';

@@ -13,9 +13,23 @@ var Robot = ((rb) => {
 		} else {
 			if(command) {
 				if(command == 'h') {
+					var str = repeat(emoji_star, 8, false, true) 
+						+ '指令表' + newline 
+						+ '「h」: 本表' + newline
+						+ '「h.status_subs」: 提醒連動查詢' + newline
+						+ '「日」: 查火腿本日直播' + newline
+						+ '「西」: 查西武本日直播' + newline
+						+ '「樂」: 查樂天本日直播' + newline
+						+ '「軟」: 查軟銀本日直播' + newline
+						+ '「歐」: 查歐力士本日直播' + newline
+						+ '「羅」: 查羅德本日直播' + newline + newline
+						+ '手機請多利用下方快速按鈕～' + newline
+						+ '※央聯無直播'
+						+ repeat(emoji_star, 8, true, true)
+						+ msg_donate;
 					msg = {
 						'type' : 'text',
-						'text' : command
+						'text' : str
 					};				
 				} else {
 					if(command.indexOf('h.remind') >= 0) {

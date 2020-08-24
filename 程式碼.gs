@@ -52,11 +52,11 @@ function doPost(e) {
 					msg = '';
 			}
 			reply(replyToken, msg);
-		} catch (e) {
-			e = (typeof e === 'string') ? new Error(e) : e;
-			Logger.severe('%s: %s (line %s, file "%s"). Stack: "%s" . While processing %s.',e.name||'', 
-			           e.message||'', e.lineNumber||'', e.fileName||'', e.stack||'', processingMessage||'');
-			throw e;
+		} catch (ex) {
+			ex = (typeof ex === 'string') ? new Error(ex) : ex;
+			Logger.severe('%s: %s (line %s, file "%s"). Stack: "%s" . While processing %s.',ex.name||'', 
+			           ex.message||'', ex.lineNumber||'', ex.fileName||'', ex.stack||'', processingMessage||'');
+			throw ex;
 		}
 	}
 }

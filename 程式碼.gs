@@ -232,7 +232,7 @@ function bubble_status_subs(userId) {
 						"action": {
 							"type": "uri",
 							"label": "進行綁定",
-							"uri": url_notify + '&status=' + userId
+							"uri": url_notify + '&state=' + userId
 						},
 						"color": "#000000",
 						"style": "primary"
@@ -241,7 +241,7 @@ function bubble_status_subs(userId) {
 			}
 		}
 	}
-	Logger.log('url_notify='+url_notify + '&status=' + userId);
+	Logger.log('url_notify='+url_notify + '&state=' + userId);
 	return obj;
 }
 

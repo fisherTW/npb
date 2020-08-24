@@ -223,6 +223,20 @@ function bubble_status_subs(userId) {
 					}
 				]
 			},
+			"body": {
+				"type": "box",
+				"layout": "vertical",
+				"contents": [
+					{
+						"type": "text",
+						"text": "未連動",
+						"size": "xl",
+						"align": "start",
+						"gravity": "center",
+						"weight": "bold"
+					}
+				]
+			},			
 			"footer": {
 				"type": "box",
 				"layout": "horizontal",
@@ -231,7 +245,7 @@ function bubble_status_subs(userId) {
 						"type": "button",
 						"action": {
 							"type": "uri",
-							"label": "進行綁定",
+							"label": "進行連動",
 							"uri": url_notify + '&state=' + userId
 						},
 						"color": "#000000",
@@ -240,6 +254,11 @@ function bubble_status_subs(userId) {
 				]
 			}
 		}
+	}
+
+	if(is_subscribed(userId)) {
+		obj.body.contents[0].text = '已連動';
+		obj.footer = {};
 	}
 	Logger.log('url_notify='+url_notify + '&state=' + userId);
 	return obj;
@@ -336,6 +355,22 @@ function doPost(e) {
 			Logger.log(ex);
 		}
 	}
+}
+
+function is_subscribed(userId) {
+	var spreadsheet = SpreadsheetApp.openById(sheet_setting);
+	var sheet = spreadsheet.getSheets()[1];
+	var range = sheet.getDataRange();
+	var textFinder = range.createTextFinder(userId);
+	var locations = [];
+
+	var occurrences = textFinder.findAll().map(x => x.getA1Notation());
+
+	if (occurrences == []) {
+		return false;
+	} else {
+		return true;
+	}  
 }
 
 // B4 x=2, y=4

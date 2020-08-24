@@ -201,6 +201,49 @@ function templater(ary_data, team) {
 	return obj_ret;
 }
 
+function bubble_status_subs() {
+	var obj = 
+	{
+		"type": "flex",
+		"altText": "NPB 直播君",
+		"contents": {
+			"type": "bubble",
+			"direction": "ltr",
+			"header": {
+				"type": "box",
+				"layout": "vertical",
+				"contents": [
+					{
+						"type": "text",
+						"text": "NPB 直播君",
+						"size": "sm",
+						"align": "start",
+						"weight": "bold",
+						"color": "#AAAAAA"
+					}
+				]
+			},
+			"footer": {
+				"type": "box",
+				"layout": "horizontal",
+				"contents": [
+					{
+						"type": "button",
+						"action": {
+							"type": "postback",
+							"label": "進行綁定",
+							"data": "h.do_subs"
+						},
+						"color": "#000000",
+						"style": "primary"
+					}	
+				]
+			}
+		}
+	}
+	return obj;
+}
+
 function bubble_remind(time) {
 	var obj = 
 	{

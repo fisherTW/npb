@@ -31,7 +31,9 @@ var Robot = ((rb) => {
 						command = command.replace('h.settime','');
 						writeDb(command, 'settime');
 						updateDb(userId, command);
-					}				
+					} else if(command.indexOf('h.status_subs') >= 0) {
+						msg = bubble_status_susbs();
+					}
 				}
 			} else {
 				msg = {

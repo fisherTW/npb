@@ -366,7 +366,7 @@ function is_subscribed(userId) {
 
 	var occurrences = textFinder.findAll().map(x => x.getA1Notation());
 
-	if (occurrences == []) {
+	if (occurrences == '') {
 		return false;
 	} else {
 		return true;

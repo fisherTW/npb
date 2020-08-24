@@ -258,7 +258,7 @@ function bubble_status_subs(userId) {
 
 	if(is_subscribed(userId)) {
 		obj.contents.body.contents[0].text = '已連動';
-		obj.contents.footer = {};
+		obj.contents.footer = null;
 	}
 	Logger.log('url_notify='+url_notify + '&state=' + userId);
 	return obj;

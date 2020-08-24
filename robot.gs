@@ -28,9 +28,8 @@ var Robot = ((rb) => {
 						
 					} else if(command.indexOf('h.settime') >= 0) {
 						var userId = events.source.userId;
-						command = command.replace('h.settime','');
-						writeDb(command, 'settime');
-						updateDb(userId, command);
+						var notifyTime = command.replace('h.settime','');
+						updateDb(userId, notifyTime);
 					} else if(command.indexOf('h.status_subs') >= 0) {
 						var userId = events.source.userId;
 						msg = bubble_status_subs(userId);						

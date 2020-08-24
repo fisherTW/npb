@@ -53,10 +53,7 @@ function doPost(e) {
 			}
 			reply(replyToken, msg);
 		} catch (ex) {
-			ex = (typeof ex === 'string') ? new Error(ex) : ex;
-			Logger.severe('%s: %s (line %s, file "%s"). Stack: "%s" . While processing %s.',ex.name||'', 
-			           ex.message||'', ex.lineNumber||'', ex.fileName||'', ex.stack||'', processingMessage||'');
-			throw ex;
+			Logger.log('doPost catch:::[' + ex.stack);
 		}
 	}
 }
@@ -353,7 +350,7 @@ function bubble_remind(time) {
 							"data": "h.settime" + time,
 							"mode": "time",
 							"initial": time,
-							"max": "20:00",
+							"max": time,
 							"min": "10:00"
 						},
 						"color": "#000000",
@@ -502,7 +499,18 @@ function repeat(str, count, is_newline_before, is_newline_after) {
 function updateDb(userId, notifyTime) {
 	var spreadsheet = SpreadsheetApp.openById(sheet_setting);
 	var sheet = spreadsheet.getSheets()[1];
+	var range = sheet.getDataRange();
+	var textFinder = range.createTextFinder(userId);
+	var locations = [];
 
+	var occurrences = textFinder.findAll().map(x => x.getA1Notation());
+
+	if (occurrences != '') {
+		var row_to_write = occurrences.replace('A','');
+		sheet.getRange("c"+row_to_write).setValue(notifyTime);
+	} else {
+		Logger.log('updateDb error: cant find userId:' + userId);
+	}
 }
 
 // shared func

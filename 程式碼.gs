@@ -99,57 +99,6 @@ function parser(obj, team) {
 // ary_data.length = 0 =>本日無
 function templater(ary_data, team) {
 	var ary_contents = [];
-	
-	for(var i=0; i < ary_data.length; i++) {
-		var ary_text = ary_data[i].split(str_sep);
-		ary_text[0] = ary_text[0].split(':');
-		var obj = {
-			"type": "box",
-			"layout": "baseline",
-			"contents": [
-				{
-					"type": "icon",
-					"url": url_pic_live
-				},
-				{
-					"type": "text",
-					"text": ary_text[0][1],//"火腿vs.樂天",
-					"flex": 0,
-					"margin": "sm",
-					"weight": "bold"
-				},
-				{
-					"type": "text",
-					"text": ary_text[1],//"FOX3",
-					"align": "center"
-				},
-				{
-					"type": "text",
-					"text": ary_text[2],//"17:00",
-					"size": "sm",
-					"align": "end",
-					"color": "#AAAAAA"
-				}
-			]
-		};
-		if(i != 0) ary_contents.push({"type": "separator"});
-		ary_contents.push(obj);
-	}
-	if(ary_data.length == 0) {
-		ary_contents[0] = {
-			"type": "box",
-			"layout": "baseline",
-			"contents": [
-				{
-					"type": "text",
-					"text": team + '本日無直播',
-					"flex": 0,
-					"margin": "sm",
-					"weight": "bold"
-				}
-			]
-		};
-	}
 	var obj_ret = {
 		"type": "flex",
 		"altText": "NPB 直播君",
@@ -189,7 +138,7 @@ function templater(ary_data, team) {
 						"type": "box",
 						"layout": "vertical",
 						"spacing": "sm",
-						"contents": ary_contents
+						"contents": ''
 					}
 				]
 			},
@@ -211,21 +160,78 @@ function templater(ary_data, team) {
 							"type": "uri",
 							"uri": url_donate
 						}
-					},
-					{
-						"type": "button",
-						"action": {
-							"type": "postback",
-							"label": "通知",
-							"data": "h.remind" + ary_text[2]
-						},
-						"color": "#000000",
-						"style": "primary"
-					}					
+					}				
 				]
 			}
 		}
 	};
+
+
+	if(ary_data.length == 0) {
+		ary_contents[0] = {
+			"type": "box",
+			"layout": "baseline",
+			"contents": [
+				{
+					"type": "text",
+					"text": team + '本日無直播',
+					"flex": 0,
+					"margin": "sm",
+					"weight": "bold"
+				}
+			]
+		};
+	} else {
+		for(var i=0; i < ary_data.length; i++) {
+			var ary_text = ary_data[i].split(str_sep);
+			ary_text[0] = ary_text[0].split(':');
+			var obj = {
+				"type": "box",
+				"layout": "baseline",
+				"contents": [
+					{
+						"type": "icon",
+						"url": url_pic_live
+					},
+					{
+						"type": "text",
+						"text": ary_text[0][1],//"火腿vs.樂天",
+						"flex": 0,
+						"margin": "sm",
+						"weight": "bold"
+					},
+					{
+						"type": "text",
+						"text": ary_text[1],//"FOX3",
+						"align": "center"
+					},
+					{
+						"type": "text",
+						"text": ary_text[2],//"17:00",
+						"size": "sm",
+						"align": "end",
+						"color": "#AAAAAA"
+					}
+				]
+			};
+			if(i != 0) ary_contents.push({"type": "separator"});
+			ary_contents.push(obj);
+		}
+		var obj_push = 	
+			{
+				"type": "button",
+				"action": {
+					"type": "postback",
+					"label": "通知",
+					"data": "h.remind" + ary_text[2]
+				},
+				"color": "#000000",
+				"style": "primary"
+			};
+		obj_ret.contents.footer.contents.push(obj_push);
+	}
+	obj_ret.contents.body.contents[1].contents = ary_contents;
+
 	return obj_ret;
 }
 

@@ -232,7 +232,7 @@ function bubble_status_subs(userId) {
 						"action": {
 							"type": "uri",
 							"label": "進行綁定",
-							"uri": url_notify + '&status' + userId
+							"uri": url_notify + '&status=' + userId
 						},
 						"color": "#000000",
 						"style": "primary"

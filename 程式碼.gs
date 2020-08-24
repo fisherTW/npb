@@ -506,7 +506,7 @@ function updateDb(userId, notifyTime) {
 	var occurrences = textFinder.findAll().map(x => x.getA1Notation());
 
 	if (occurrences != '') {
-		var row_to_write = occurrences.replace('A','');
+		var row_to_write = occurrences[0].replace('A','');
 		sheet.getRange("c"+row_to_write).setValue(notifyTime);
 	} else {
 		Logger.log('updateDb error: cant find userId:' + userId);

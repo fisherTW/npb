@@ -30,6 +30,10 @@ var Robot = ((rb) => {
 						var userId = events.source.userId;
 						var notifyTime = command.replace('h.settime','');
 						updateDb(userId, notifyTime);
+						msg = {
+							'type' : 'text',
+							'text' : '設定提醒完成！'
+						};						
 					} else if(command.indexOf('h.status_subs') >= 0) {
 						var userId = events.source.userId;
 						msg = bubble_status_subs(userId);						

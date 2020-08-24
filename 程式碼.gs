@@ -396,6 +396,7 @@ function commandParser(msg) {
 			break;
 		case 'h.remind':
 		case 'h.settime':
+		case 'h.status_subs':
 			is_team = false;
 			ret = msg_ori;
 			break;

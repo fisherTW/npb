@@ -201,7 +201,7 @@ function templater(ary_data, team) {
 	return obj_ret;
 }
 
-function bubble_status_subs() {
+function bubble_status_subs(userId) {
 	var obj = 
 	{
 		"type": "flex",
@@ -230,9 +230,9 @@ function bubble_status_subs() {
 					{
 						"type": "button",
 						"action": {
-							"type": "postback",
+							"type": "uri",
 							"label": "進行綁定",
-							"data": "h.do_subs"
+							"uri": url_notify + '&status' + userId
 						},
 						"color": "#000000",
 						"style": "primary"
@@ -397,6 +397,7 @@ function commandParser(msg) {
 		case 'h.remind':
 		case 'h.settime':
 		case 'h.status_subs':
+		case 'h.do_subs':
 			is_team = false;
 			ret = msg_ori;
 			break;

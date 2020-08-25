@@ -10,9 +10,12 @@ var url_gas_npb			= 'https://script.google.com/macros/s/AKfycbwjoQW3htDOFlyQNji9
 var url_gas_npb_robot	= url_gas_npb + '?act=robot';
 var url_gas_npb_sub		= url_gas_npb + '?act=subscribe';
 
-var url_notify_callback = 'https://script.google.com/macros/s/AKfycbx3dFPPqrhppQ508EFDQPUo67UrnNZNL9rdCtJWyi5pJPaE0vw/exec';
+var url_gas_npb_notify	= 'https://script.google.com/macros/s/AKfycbx3dFPPqrhppQ508EFDQPUo67UrnNZNL9rdCtJWyi5pJPaE0vw/exec';
 
-var url_notify = 'https://notify-bot.line.me/oauth/authorize?response_type=code&scope=notify&client_id=' + notify_client_id + '&redirect_uri=' + url_notify_callback;
+var url_bot_reply		= 'https://api.line.me/v2/bot/message/reply';
+
+var url_notify 			= 'https://notify-bot.line.me/oauth/authorize?response_type=code&scope=notify&client_id=' + notify_client_id + '&redirect_uri=' + url_gas_npb_notify;
+var url_notify_revoke	= 'https://notify-api.line.me/api/revoke';
 
 var url_pic_live		= 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png';
 var str_sep = '[-S-]';
@@ -450,9 +453,24 @@ function reply(replyToken, msg) {
 		'payload': JSON.stringify(payload)
 	};
 			
-	UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', option);
+	UrlFetchApp.fetch(url_bot_reply, option);
 }
 
+// not tested
+function revoke(token) {
+	var option = {
+		'headers': {
+			'Content-Type': 'application/json; charset=UTF-8',
+			'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN
+		},
+		'method': 'post',
+		'payload': JSON.stringify(payload)
+	};
+			
+	UrlFetchApp.fetch(url_notify_revoke, option);
+}
+
+// no use
 function push(userId, msg) {
 	var payload = {
 		to: userId,
@@ -470,7 +488,7 @@ function push(userId, msg) {
 		'payload': JSON.stringify(payload)
 	};
 			
-	UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', option);
+	UrlFetchApp.fetch(url_bot_reply, option);
 }
 
 function repeat(str, count, is_newline_before, is_newline_after) {

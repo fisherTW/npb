@@ -42,7 +42,7 @@ var Robot = ((rb) => {
 						
 					} else if(command.indexOf('h.settime') >= 0) {
 						var userId = events.source.userId;
-						var notifyTime = command.replace('h.settime','');
+						var notifyTime = events.postback.params.time;
 						updateDb(userId, notifyTime);
 						msg = {
 							'type' : 'text',

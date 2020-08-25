@@ -350,7 +350,7 @@ function bubble_remind(time) {
 						"action": {
 							"type": "datetimepicker",
 							"label": "設定提醒",
-							"data": "h.settime" + time,
+							"data": "h.settime",
 							"mode": "time",
 							"initial": time,
 							"max": time,

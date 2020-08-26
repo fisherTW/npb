@@ -439,6 +439,8 @@ function commandParser(msg) {
 		case '羅':
 			ret = '羅德';
 			break;
+		case 'H':
+			msg_ori = 'h';
 		case 'h':
 		case 'h.remind':
 		case 'h.settime':

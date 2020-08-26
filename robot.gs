@@ -41,6 +41,7 @@ var Robot = ((rb) => {
 						'type' : 'text',
 						'text' : str
 					};
+					msg.quickReply = {};
 					msg.quickReply.items = get_quickReply_item(ary_quickReply_item);
 				} else {
 					if(command.indexOf('h.remind') >= 0) {

@@ -135,6 +135,13 @@ function templater(ary_data, team) {
 					}
 				]
 			},
+			"hero": {
+				"type": "image",
+				"url": GoogleDrive.getImageUrl('kansen'),
+				"size": "full",
+				"aspectRatio": "20:13",
+				"aspectMode": "cover"
+			},			
 			"body": {
 				"type": "box",
 				"layout": "vertical",
@@ -239,7 +246,7 @@ function templater(ary_data, team) {
 				"type": "button",
 				"action": {
 					"type": "postback",
-					"label": "通知",
+					"label": "提醒",
 					"data": "h.remind" + ary_text[2]
 				},
 				"color": "#000000",
@@ -336,14 +343,7 @@ function bubble_remind(time) {
 						"color": "#AAAAAA"
 					}
 				]
-			},
-			"hero": {
-				"type": "image",
-				"url": GoogleDrive.getImageUrl('kansen'),
-				"size": "full",
-				"aspectRatio": "20:13",
-				"aspectMode": "cover"
-			},			
+			},		
 			"body": {
 				"type": "box",
 				"layout": "vertical",

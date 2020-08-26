@@ -96,6 +96,22 @@ function parser(obj, team) {
 	return ret;
 }
 
+function get_quickReply_item(ary) {
+	var ary_ret = [];
+	for (var i = 0; i < ary.length; i++) {
+		var obj = {};
+		obj.type = 'action';
+		obj.action = {};
+		obj.action.type 	= 'message';
+		obj.action.label	= ary[i].label;
+		obj.action.text 	= ary[i].text;
+
+		ary_ret.push(obj);
+	}
+	
+	return ary_ret;
+}
+
 // ary_data.length = 0 =>本日無
 function templater(ary_data, team) {
 	var ary_contents = [];

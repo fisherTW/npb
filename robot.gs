@@ -13,6 +13,16 @@ var Robot = ((rb) => {
 		} else {
 			if(command) {
 				if(command == 'h') {
+					var ary_quickReply_item = [
+						{
+							'label': '指令表',
+							'text' : 'h'
+						},
+						{
+							'label': '提醒連動查詢',
+							'text' : 'h.status_subs'
+						}
+					];
 					var str = repeat(emoji_star, 8, false, true) 
 						+ '指令表' + newline 
 						+ '「h」: 本表' + newline
@@ -30,7 +40,8 @@ var Robot = ((rb) => {
 					msg = {
 						'type' : 'text',
 						'text' : str
-					};				
+					};
+					msg.quickReply.items = get_quickReply_item(ary_quickReply_item);
 				} else {
 					if(command.indexOf('h.remind') >= 0) {
 						try {

@@ -19,10 +19,6 @@ var url_notify_revoke	= 'https://notify-api.line.me/api/revoke';
 
 var url_pic_live		= 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png';
 
-// google drive image
-var url_pic_gd_base		= 'https://drive.google.com/uc?export=view&id=';
-var url_pic_kansen		= url_pic_gd_base + '1da2HUEOMdDrNb-4BkiCGBSgyycrGAUMl';
-
 var str_sep = '[-S-]';
 var newline = "\n";
 var emoji_ball	= '⚾';
@@ -341,6 +337,13 @@ function bubble_remind(time) {
 					}
 				]
 			},
+			"hero": {
+				"type": "image",
+				"url": GoogleDrive.getImageUrl('kansen'),
+				"size": "full",
+				"aspectRatio": "20:13",
+				"aspectMode": "cover"
+			},			
 			"body": {
 				"type": "box",
 				"layout": "vertical",
